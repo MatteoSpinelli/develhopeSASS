@@ -1,0 +1,38 @@
+$red: red;
+$blue: blue;
+$green: green;
+
+
+@mixin article-style($color, $border-color, $font-size: 1rem){
+    color: $color;
+    border: 1px solid $border-color;
+    font-size: $font-size;
+}
+
+div{
+    border: 1px solid $red;
+    text-align: center;
+    padding: 1rem;
+    h1{
+        color: $green;
+        text-decoration: underline;
+        text-decoration-color: $blue;
+    }
+    section{
+        display: flex;
+        margin-bottom: 1rem;
+        article{
+            width: 100%;
+            padding: 1rem;
+            @include article-style($red, $green);
+            &:nth-child(odd){
+                @include article-style($blue, $green);
+            }
+        }
+        &:last-child{
+            article{
+                @include article-style($green, $blue, 2rem);
+            }
+        }
+    }
+}
