@@ -1,0 +1,41 @@
+div h2, div h1 {
+  color: green;
+  text-decoration: underline;
+  text-decoration-color: blue;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  border: 0.0625rem solid red;
+  text-align: center;
+  padding: 1rem;
+}
+div h2 {
+  align-self: center;
+  padding: 1rem;
+  border: 0.0625rem solid red;
+}
+div section {
+  display: flex;
+  margin-bottom: 1rem;
+}
+div section article {
+  padding: 1rem;
+  color: red;
+  border: 0.0625rem solid green;
+  font-size: 1rem;
+}
+div section article:nth-child(odd) {
+  color: blue;
+  border: 0.0625rem solid green;
+  font-size: 1rem;
+}
+div section:last-child article {
+  flex: 1;
+  color: green;
+  border: 0.0625rem solid blue;
+  font-size: 2rem;
+}
+
+/*# sourceMappingURL=style.css.map */
