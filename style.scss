@@ -1,0 +1,93 @@
+@use "variables" as var;
+@use "function" as f;
+@use "sass:color";
+
+
+$div-classes: (
+    "fs-1rem": 1rem,
+    "fs-2rem": 2rem,
+    "fs-3rem": 3rem
+);
+
+@each $key, $value in $div-classes{
+    .#{$key}{
+        text-align: left;
+        font-size: $value;
+    }
+};
+
+@mixin article-style($color, $border-color, $font-size: 1rem) {
+    color: $color;
+    border: #{f.rem(1px)} solid $border-color;
+    font-size: $font-size;
+}
+
+%text {
+    color: var.$green;
+    text-decoration: underline;
+    text-decoration-color: var.$blue;
+}
+
+
+
+body>div {
+    display: flex;
+    flex-direction: column;
+    border: #{f.rem(1px)} solid var.$red;
+    text-align: center;
+    padding: #{f.rem(16px)};
+
+    h1 {
+        @extend %text;
+    }
+
+    h2 {
+        align-self: center;
+        @extend %text;
+        padding: 1rem;
+        border: #{f.rem(1px)} solid var.$red;
+    }
+
+    section {
+        display: flex;
+        margin-bottom: 1rem;
+
+        article {
+            padding: 1rem;
+            @include article-style(var.$red, var.$green);
+
+            &:nth-child(odd) {
+                @include article-style(var.$blue, var.$green);
+            }
+        }
+
+        &:nth-child(4) {
+            justify-content: space-between;
+
+            div {
+                width: #{f.rem(45px)};
+                height: #{f.rem(45px)};
+                border: #{f.rem(1px)} solid var.$red;
+
+                @for $index from 1 through 20 {
+                    &:nth-child(#{$index}) {
+                        background-color: color.adjust($color: white, $lightness: -5 * $index);
+                        color: color.adjust($color: black, $lightness: 5 * $index);
+
+                        @if $index == 10 {
+                            background-color: var.$blue;
+                            color: var.$red;
+                        }
+                    }
+                }
+            }
+        }
+
+        &:last-child {
+            article {
+                flex: 1;
+                @include article-style(var.$green, var.$blue, 2rem);
+            }
+        }
+    }
+}
