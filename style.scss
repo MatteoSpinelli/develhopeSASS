@@ -1,0 +1,36 @@
+@use "variables" as var;
+@use "function" as f;
+
+
+@mixin article-style($color, $border-color, $font-size: 1rem){
+    color: $color;
+    border: #{f.rem(1px)} solid $border-color;
+    font-size: $font-size;
+}
+
+div{
+    border: #{f.rem(1px)} solid var.$red;
+    text-align: center;
+    padding: #{f.rem(16px)};
+    h1{
+        color: var.$green;
+        text-decoration: underline;
+        text-decoration-color: var.$blue;
+    }
+    section{
+        display: flex;
+        margin-bottom: 1rem;
+        article{
+            padding: 1rem;
+            @include article-style(var.$red, var.$green);
+            &:nth-child(odd){
+                @include article-style(var.$blue, var.$green);
+            }
+        }
+        &:last-child{
+            article{
+                @include article-style(var.$green, var.$blue, 2rem);
+            }
+        }
+    }
+}
