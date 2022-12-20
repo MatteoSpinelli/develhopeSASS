@@ -71,8 +71,8 @@ body>div {
 
                 @for $index from 1 through 20 {
                     &:nth-child(#{$index}) {
-                        background-color: color.adjust($color: white, $lightness: -5 * $index);
-                        color: color.adjust($color: black, $lightness: 5 * $index);
+                        background-color: lighten($color: white, -5 * $index);
+                        color: darken($color: black, 5 * $index);
 
                         @if $index == 10 {
                             background-color: var.$blue;
